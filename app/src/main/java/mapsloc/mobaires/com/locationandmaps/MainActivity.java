@@ -17,4 +17,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LastKnownLocationActivity.class));
     }
 
+    public void goToContinuousLocation(View v) {
+        startActivity(new Intent(this, ContinuousLocationActivity.class));
+    }
+
+    public void goToMapExample(View v) {
+        startActivity(new Intent(this, MapExampleActivity.class));
+    }
+
 }

@@ -20,4 +20,15 @@
         android:layout_height="wrap_content"
         android:text="Last Location"
         android:onClick="goToLastLocation"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuous Location"
+        android:onClick="goToContinuousLocation"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map example"
+        android:onClick="goToMapExample"/>
+
 </LinearLayout>
