@@ -166,10 +166,12 @@ public class ContinuousLocationActivity extends AppCompatActivity implements Goo
     }
 
     private void updateUI() {
-        mLocationText.setText(
-                "Lat: " + mCurrentLocation.getLatitude() +
-                        " Lon: " + mCurrentLocation.getLongitude() +
-                        " ts: " + mCurrentLocation.getTime());
+        if (mCurrentLocation!=null) {
+            mLocationText.setText(
+                    "Lat: " + mCurrentLocation.getLatitude() +
+                            " Lon: " + mCurrentLocation.getLongitude() +
+                            " ts: " + mCurrentLocation.getTime());
+        }
     }
 
     private static final int REQUEST_LOCATION = 999;
