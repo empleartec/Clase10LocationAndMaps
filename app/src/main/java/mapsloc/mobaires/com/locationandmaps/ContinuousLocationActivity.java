@@ -269,7 +269,6 @@ public class ContinuousLocationActivity extends AppCompatActivity implements Goo
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();
-
         super.onStop();
     }
 

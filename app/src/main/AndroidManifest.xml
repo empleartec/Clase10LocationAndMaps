@@ -2,12 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mapsloc.mobaires.com.locationandmaps">
 
-    <!--
-    Android has two location request settings: {@code ACCESS_COARSE_LOCATION} and
-    {@code ACCESS_FINE_LOCATION}. These settings control the accuracy of the current location. This
-    sample uses ACCESS_COARSE_LOCATION. As a result, the location services return a location with
-    an accuracy approximately equivalent to a city block.
-    -->
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
@@ -20,6 +15,10 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC0KdfKKrokxC4k4rkJlL5GeQeDI_VTu_g"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>
