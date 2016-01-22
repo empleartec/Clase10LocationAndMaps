@@ -63,30 +63,30 @@ public class LastKnownLocationActivity extends AppCompatActivity implements Goog
         super.onStop();
     }
 
-    public static int REQUEST_COARSE_LOCATION;
+    public static int REQUEST_LOCATION = 999;
 
     @Override
     public void onConnected(Bundle bundle) {
-        int permissionStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
-        if (/*ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-            && */permissionStatus
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+        int permissionCoarseStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        int permissionFineStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCoarseStatus != PackageManager.PERMISSION_GRANTED
+                && permissionFineStatus != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION);
             return;
         }
         getAndShowLocation();
     }
 
     public void getAndShowLocation() {
+        int permissionCoarseStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        int permissionFineStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCoarseStatus != PackageManager.PERMISSION_GRANTED
+                && permissionFineStatus != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
@@ -97,7 +97,7 @@ public class LastKnownLocationActivity extends AppCompatActivity implements Goog
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (REQUEST_COARSE_LOCATION==requestCode) {
+        if (REQUEST_LOCATION ==requestCode) {
             // We have requested multiple permissions for contacts, so all of them need to be
             // checked.
             if (PermissionUtil.verifyPermissions(grantResults)) {
